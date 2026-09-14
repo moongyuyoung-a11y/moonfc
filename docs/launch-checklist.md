@@ -16,6 +16,11 @@
 
 `.github/workflows/deploy.yml` 이 브랜치에 푸시할 때마다 빌드해 GitHub Pages 에 올립니다.
 
+**최초 1회 필요한 설정 (저장소 소유자만 가능)**
+1. https://github.com/moongyuyoung-a11y/moonfc/settings/pages 접속
+2. Build and deployment → **Source** 를 **GitHub Actions** 로 선택
+3. https://github.com/moongyuyoung-a11y/moonfc/actions 에서 "Deploy to GitHub Pages" 실행 → Re-run (또는 Claude 에게 "Pages 켰어, 다시 배포해줘")
+
 - 임시 주소: `https://moongyuyoung-a11y.github.io/moonfc/` (도메인 연결 전까지)
 - 정식 주소: `https://mcg.co.kr` (아래 DNS 설정 후)
 - 폼 주소·카카오채널·검색엔진 확인값은 GitHub 저장소 → Settings → Secrets and variables → Actions → **Variables** 에

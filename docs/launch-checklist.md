@@ -2,7 +2,7 @@
 
 ## 1. 배포 전
 
-- [ ] `.env` 에 `NEXT_PUBLIC_SITE_URL` 을 실제 도메인으로 설정 (예: `https://moonfc.kr`)
+- [ ] `.env` 에 `NEXT_PUBLIC_SITE_URL` 을 실제 도메인으로 설정 (`https://mcg.co.kr`)
 - [ ] `src/lib/site.ts` 의 `region` (주 활동지·주소) 수정
 - [ ] `src/lib/profile.ts` 의 대괄호 `[ ]` 항목을 실제 경력·강의 이력·학력·자격으로 교체
 - [ ] `public/images/founder.webp` 를 실제 대표 사진으로 교체 (WebP, 720×900 권장)
@@ -12,12 +12,34 @@
 - [ ] 카카오톡 채널 URL `NEXT_PUBLIC_KAKAO_CHANNEL_URL` 설정
 - [ ] `npm run build && npm run validate:schema` 통과 확인
 
-## 2. Vercel 배포
+## 2. 호스팅: GitHub Pages (설정 완료, 자동 배포)
 
-1. GitHub 저장소를 Vercel 에 Import (Framework: Next.js 자동 감지, 빌드 명령 `next build`, 출력 `out`)
-2. Environment Variables 에 `.env` 의 값 등록 (Production/Preview 모두)
-3. 도메인 연결: Vercel → Settings → Domains 에 도메인 추가, DNS 에 안내된 A/CNAME 레코드 등록
-4. `www` ↔ 루트 도메인 중 하나를 대표로 정하고 나머지는 리다이렉트 (canonical 과 일치시킬 것)
+`.github/workflows/deploy.yml` 이 브랜치에 푸시할 때마다 빌드해 GitHub Pages 에 올립니다.
+
+- 임시 주소: `https://moongyuyoung-a11y.github.io/moonfc/` (도메인 연결 전까지)
+- 정식 주소: `https://mcg.co.kr` (아래 DNS 설정 후)
+- 폼 주소·카카오채널·검색엔진 확인값은 GitHub 저장소 → Settings → Secrets and variables → Actions → **Variables** 에
+  `FORM_ENDPOINT`, `KAKAO_CHANNEL_URL`, `NAVER_SITE_VERIFICATION`, `GOOGLE_SITE_VERIFICATION` 이름으로 등록하면 다음 배포부터 반영
+
+### mcg.co.kr 연결 절차
+
+1. 도메인 등록업체(가비아·후이즈·카페24 등)의 DNS 관리에서 아래 레코드를 추가
+   | 타입 | 호스트 | 값 |
+   | --- | --- | --- |
+   | A | @ | 185.199.108.153 |
+   | A | @ | 185.199.109.153 |
+   | A | @ | 185.199.110.153 |
+   | A | @ | 185.199.111.153 |
+   | CNAME | www | moongyuyoung-a11y.github.io |
+2. 저장소에 `public/CNAME` 파일을 만들고 내용에 `mcg.co.kr` 한 줄만 적어 푸시 (Claude 에게 "DNS 설정했어, CNAME 추가해줘" 라고 요청해도 됨)
+   → 워크플로가 basePath 없이 다시 빌드하고, GitHub 저장소 Settings → Pages 의 Custom domain 에 mcg.co.kr 이 표시됨
+3. DNS 전파(수 분~수 시간) 후 Settings → Pages 에서 **Enforce HTTPS** 체크
+4. `https://mcg.co.kr` 접속 확인. `www.mcg.co.kr` 은 자동으로 `mcg.co.kr` 로 리다이렉트됨
+
+### Vercel 을 쓰고 싶다면 (대안)
+
+GitHub 저장소를 Vercel 에 Import 하면 Next.js 를 자동 감지해 배포됩니다. Environment Variables 에 `.env.example` 의 값을 넣고, Settings → Domains 에 mcg.co.kr 을 추가한 뒤 안내되는 DNS 레코드를 등록하면 됩니다. 이 경우 GitHub Pages 워크플로는 삭제해도 됩니다.
+
 5. 배포 후 확인
    - [ ] `https://도메인/sitemap.xml`
    - [ ] `https://도메인/robots.txt`

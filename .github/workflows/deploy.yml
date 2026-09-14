@@ -1,0 +1,59 @@
+# GitHub Pages 자동 배포
+# - 이 브랜치에 푸시할 때마다 빌드 후 배포
+# - public/CNAME 이 있으면 커스텀 도메인(mcg.co.kr)으로, 없으면 https://<user>.github.io/moonfc/ 로 배포
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [claude/moonfc-official-website-q2vynb, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - run: npm ci
+      - name: Build (static export)
+        env:
+          NEXT_PUBLIC_SITE_URL: https://mcg.co.kr
+          # 프로젝트 사이트면 "/moonfc", 커스텀 도메인이면 "" 가 자동으로 들어간다
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.FORM_ENDPOINT }}
+          NEXT_PUBLIC_KAKAO_CHANNEL_URL: ${{ vars.KAKAO_CHANNEL_URL }}
+          NEXT_PUBLIC_NAVER_SITE_VERIFICATION: ${{ vars.NAVER_SITE_VERIFICATION }}
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+        run: npm run build
+      - name: Validate structured data
+        run: npm run validate:schema
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

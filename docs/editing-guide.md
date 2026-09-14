@@ -15,6 +15,7 @@
 | FAQ 추가·수정 | `src/lib/faq.ts` | `category` 로 어느 서비스 페이지에 뜰지 결정 |
 | 블로그 글 | `content/insights/*.md` | 파일 하나 = 글 하나. README 의 frontmatter 예시 참고 |
 | 대표 사진 | `public/images/founder.webp` | 720×900 세로형 WebP 권장 |
+| 홈 첫 화면 배경 사진 | `public/images/hero.webp` | 1600×900 가로형 WebP. 센터·강의 현장 사진 권장. 어두운 오버레이가 자동으로 덮임 |
 | OG 이미지(링크 공유 썸네일) | `public/images/og-default.png` | 1200×630 PNG |
 | 로고·파비콘 | `public/images/logo.png`, `src/app/icon.svg` | |
 | 도메인, 폼 주소, 카카오채널, 검색엔진 확인값 | `.env` (Vercel 에서는 Environment Variables) | `.env.example` 참고 |
@@ -38,7 +39,7 @@
 
 - 색상, 둥글기, 최대 폭 등은 `src/app/globals.css` 맨 위 `:root` 변수에서 한 번에 바꿉니다.
   - `--navy` 기본 브랜드색, `--accent` 강조색(링크·버튼 포인트), `--surface` 회색 배경
-- 글꼴: 제목은 `public/fonts/Pretendard-Bold.subset.woff2`(`globals.css` 맨 위 `@font-face`), 본문은 시스템 글꼴. 본문까지 웹폰트로 바꾸면 모바일 성능 점수가 약 10점 떨어지므로 권장하지 않음
+- 글꼴: 제목은 `src/fonts/Pretendard-Bold.subset.woff2`(`src/app/layout.tsx` 의 `localFont`), 본문은 시스템 글꼴. 본문까지 웹폰트로 바꾸면 모바일 성능 점수가 약 10점 떨어지므로 권장하지 않음
 - 헤더·푸터는 `src/components/Header.tsx`, `Footer.tsx`
 
 ## 수정 후 확인
@@ -47,7 +48,7 @@
 npm run build && npm run validate:schema
 ```
 
-빌드가 통과하고 검사 스크립트가 "모든 검사 통과" 를 출력하면 배포해도 됩니다. GitHub 에 푸시하면 Vercel 이 자동으로 배포합니다.
+빌드가 통과하고 검사 스크립트가 "모든 검사 통과" 를 출력하면 배포해도 됩니다. GitHub 에 푸시하면 GitHub Actions 가 자동으로 GitHub Pages 에 배포합니다 (저장소 Actions 탭에서 진행 상황 확인).
 
 ## Claude Code 에 요청할 때
 

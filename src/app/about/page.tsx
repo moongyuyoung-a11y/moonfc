@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
-import { site, absoluteUrl } from "@/lib/site";
+import { site, absoluteUrl, asset } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { graph, personSchema, breadcrumbSchema } from "@/lib/schema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <div className="about-grid">
             <div className="about-photo">
               <img
-                src={site.founder.image}
+                src={asset(site.founder.image)}
                 alt={`${site.name} 대표 ${site.founder.name} 프로필 사진`}
                 width={720}
                 height={900}

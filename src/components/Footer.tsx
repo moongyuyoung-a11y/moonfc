@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { nav, site, asset } from "@/lib/site";
 
 export function Footer() {
   const info: string[] = [];
@@ -61,7 +61,7 @@ export function Footer() {
               </li>
             )}
             <li>
-              <a href="/rss.xml">RSS</a>
+              <a href={asset("/rss.xml")}>RSS</a>
             </li>
           </ul>
         </div>

@@ -3,8 +3,16 @@
  * 브랜드명·대표명·서비스명 표기는 이 파일의 값만 사용해 모든 페이지에서 동일하게 유지합니다.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://moonfc.kr"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://mcg.co.kr"
 ).replace(/\/$/, "");
+
+/** 하위 경로 배포 시 접두어 (예: "/moonfc"). 보통은 빈 문자열 */
+export const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
+
+/** public/ 아래 정적 파일 경로에 basePath 를 붙인다. <img src>, CSS 배경 등에 사용 */
+export function asset(path: string): string {
+  return `${BASE_PATH}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 export const site = {
   /** 한글 브랜드명 (정식 표기) */

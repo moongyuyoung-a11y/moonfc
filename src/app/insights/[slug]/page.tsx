@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
-import { site, services, absoluteUrl } from "@/lib/site";
+import { site, services, absoluteUrl, asset } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { graph, articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -89,7 +89,7 @@ export default async function InsightPage({ params }: { params: Promise<Params> 
           </aside>
 
           {post.image && (
-            <img src={post.image} alt={post.imageAlt ?? post.title} width={1200} height={630} loading="lazy" decoding="async" />
+            <img src={asset(post.image)} alt={post.imageAlt ?? post.title} width={1200} height={630} loading="lazy" decoding="async" />
           )}
 
           <div className="article-body" dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -142,7 +142,7 @@ export default async function InsightPage({ params }: { params: Promise<Params> 
           )}
 
           <section className="author-box" aria-label="작성자 정보">
-            <img src={site.founder.image} alt={`${site.founder.name} 대표 프로필 사진`} width={72} height={72} loading="lazy" decoding="async" />
+            <img src={asset(site.founder.image)} alt={`${site.founder.name} 대표 프로필 사진`} width={72} height={72} loading="lazy" decoding="async" />
             <div>
               <p className="author-name">
                 {site.founder.name} ({site.founder.alias}) · {site.name} {site.founder.jobTitle}

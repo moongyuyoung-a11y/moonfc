@@ -1,6 +1,7 @@
 /**
  * out/ 를 Vercel 정적 호스팅과 같은 규칙(/about → about.html)으로 서빙하는 로컬 서버.
- * 사용: node scripts/serve-static.mjs [port]
+ * 사용: node scripts/serve-static.mjs [port] [basePath]
+ *   예) NEXT_PUBLIC_BASE_PATH=/moonfc npm run build && node scripts/serve-static.mjs 4173 /moonfc
  */
 import http from "node:http";
 import fs from "node:fs";
@@ -9,6 +10,7 @@ import zlib from "node:zlib";
 
 const ROOT = path.join(process.cwd(), "out");
 const PORT = Number(process.argv[2] ?? 4173);
+const PREFIX = (process.argv[3] ?? "").replace(/\/$/, "");
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json",
   ".png": "image/png", ".webp": "image/webp", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".txt": "text/plain; charset=utf-8",
@@ -16,7 +18,12 @@ const TYPES = {
 };
 
 function resolve(urlPath) {
-  const clean = decodeURIComponent(urlPath.split("?")[0]).replace(/\/$/, "") || "/";
+  let clean = decodeURIComponent(urlPath.split("?")[0]).replace(/\/$/, "") || "/";
+  if (PREFIX) {
+    if (clean === PREFIX) clean = "/";
+    else if (clean.startsWith(PREFIX + "/")) clean = clean.slice(PREFIX.length);
+    else return { p: path.join(ROOT, "404.html"), status: 404 };
+  }
   const candidates = clean === "/" ? ["index.html"] : [clean, `${clean}.html`, path.join(clean, "index.html")];
   for (const c of candidates) {
     const p = path.join(ROOT, c);

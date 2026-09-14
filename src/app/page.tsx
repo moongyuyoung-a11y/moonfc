@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
-import { site, services } from "@/lib/site";
+import { site, services, asset } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { graph, localBusinessSchema, personSchema } from "@/lib/schema";
 import { getAllInsights } from "@/lib/insights";
@@ -59,8 +59,8 @@ export default function HomePage() {
     <>
       <JsonLd data={graph(localBusinessSchema(), personSchema())} />
 
-      {/* 1. 히어로: 누구를 위한 무엇인지 한 문장 */}
-      <section className="hero">
+      {/* 1. 히어로: 누구를 위한 무엇인지 한 문장. 배경은 public/images/hero.webp (센터·강의 현장 사진으로 교체 권장) */}
+      <section className="hero" style={{ backgroundImage: `url(${asset("/images/hero.webp")})` }}>
         <div className="container">
           <p className="eyebrow">{site.tagline}</p>
           <h1>
@@ -70,17 +70,23 @@ export default function HomePage() {
           </h1>
           <p className="lead">{site.description}</p>
           <div className="hero-actions">
-            <Link href="/contact" className="btn btn-primary">
+            <Link href="/contact" className="btn btn-light">
               무료 사전 상담 신청
             </Link>
-            <Link href="/consulting" className="btn btn-outline">
+            <Link href="/consulting" className="btn btn-ghost-light">
               컨설팅 진행 방식 보기
             </Link>
           </div>
           <p className="hero-note">
             대표 컨설턴트 {site.founder.name}({site.founder.alias}) · {site.region.countryName} 전 지역 진행 · 사전 상담 무료
           </p>
-          <ul className="hero-points" aria-label="MOONFC의 세 가지 원칙">
+        </div>
+      </section>
+
+      {/* 1-1. 세 가지 원칙 */}
+      <section className="trust-strip" aria-label="MOONFC의 세 가지 원칙">
+        <div className="container">
+          <ul className="hero-points">
             <li>
               <span className="check" aria-hidden="true">✓</span>
               <span>
@@ -221,7 +227,7 @@ export default function HomePage() {
         <div className="container founder-preview">
           <div className="founder-photo">
             <img
-              src={site.founder.image}
+              src={asset(site.founder.image)}
               alt={`${site.name} 대표 ${site.founder.name} 프로필 사진`}
               width={720}
               height={900}

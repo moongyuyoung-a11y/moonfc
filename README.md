@@ -2,7 +2,8 @@
 
 문프스컨설팅그룹(MOONFC) 공식 홈페이지. 피트니스센터 경영 컨설팅 · FC 교육 · 강의.
 
-- Next.js 16 (App Router) **정적 export** — 서버 없이 Vercel/어떤 정적 호스팅에도 배포 가능
+- Next.js 16 (App Router) **정적 export** — GitHub Pages 로 자동 배포(`.github/workflows/deploy.yml`), Vercel 등 다른 정적 호스팅도 가능
+- 정식 도메인 `https://mcg.co.kr` (도메인 연결 전 임시 주소 `https://moongyuyoung-a11y.github.io/moonfc/`)
 - 한국어(`lang="ko"`), 모바일 우선, 외부 스크립트 없음. 제목용 글꼴 Pretendard Bold(OFL, 한글 2,350자 서브셋 약 180KB)만 셀프호스팅하고 본문은 시스템 글꼴을 써서 첫 화면이 폰트를 기다리지 않게 함
 - SEO/GEO: 페이지별 title·description·canonical·OG·Twitter, JSON-LD(@graph), sitemap.xml, robots.txt, rss.xml, llms.txt
 
@@ -38,8 +39,9 @@ src/lib/trust.ts         핵심 숫자·고객 후기·협력 기관 (비어 있
 src/lib/schema.ts        JSON-LD 빌더
 src/lib/seo.ts           메타태그 빌더
 content/insights/*.md    블로그 글 (frontmatter + 마크다운)
-public/images/           WebP 이미지, OG 이미지
-public/fonts/            제목용 Pretendard Bold 서브셋 (라이선스 파일 포함)
+public/images/           WebP 이미지(히어로 배경 hero.webp 포함), OG 이미지
+src/fonts/               제목용 Pretendard Bold 서브셋 (next/font/local 로 로드, 라이선스 파일 포함)
+.github/workflows/       GitHub Pages 자동 배포
 scripts/                 검증·라이트하우스·로컬 서버 스크립트
 docs/launch-checklist.md 배포 후 서치어드바이저/서치콘솔 등록 절차
 docs/editing-guide.md    무엇을 바꾸려면 어느 파일을 고치는지 정리한 수정 가이드
@@ -50,7 +52,7 @@ docs/seo-plan.md         검색 상위 노출을 위한 운영 계획
 
 | 항목 | 위치 |
 | --- | --- |
-| 배포 도메인 | `.env`의 `NEXT_PUBLIC_SITE_URL` (기본값 `https://moonfc.kr`) |
+| 배포 도메인 | `.env`의 `NEXT_PUBLIC_SITE_URL` (기본값 `https://mcg.co.kr`) |
 | 주 활동지·주소 | `src/lib/site.ts` → `region` |
 | 대표 경력·강의 이력·학력·자격 | `src/lib/profile.ts` (대괄호 `[ ]` 항목 전부) |
 | 대표 프로필 사진 | `public/images/founder.webp` (720×900 권장, WebP) |
@@ -60,7 +62,7 @@ docs/seo-plan.md         검색 상위 노출을 위한 운영 계획
 | 카카오톡 채널 URL | `.env`의 `NEXT_PUBLIC_KAKAO_CHANNEL_URL` |
 | 검색엔진 소유 확인 값 | `.env`의 `NEXT_PUBLIC_NAVER_SITE_VERIFICATION`, `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` |
 
-`.env.example` 을 복사해 `.env` 로 만들고 값을 채우면 됩니다. Vercel 에서는 프로젝트 설정 → Environment Variables 에 같은 이름으로 넣습니다.
+`.env.example` 을 복사해 `.env` 로 만들고 값을 채우면 됩니다. GitHub Pages 배포에서는 저장소 Settings → Secrets and variables → Actions → Variables 에 `FORM_ENDPOINT`, `KAKAO_CHANNEL_URL`, `NAVER_SITE_VERIFICATION`, `GOOGLE_SITE_VERIFICATION` 으로 등록합니다 (`.github/workflows/deploy.yml` 참고).
 
 ## 상담 신청 폼 (서버 없이 DB 수집)
 

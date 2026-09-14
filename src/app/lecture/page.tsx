@@ -18,7 +18,7 @@ const crumbs = [
 ];
 
 export const metadata = buildMetadata({
-  title: "기업·대학 강의 출강",
+  title: "피트니스 경영 강의 · 기업·대학 출강",
   description: "피트니스 기업·프랜차이즈 직원 교육과 대학 체육·스포츠 학과 강의. 피트니스 경영과 FC 실무 주제로 출강하는 MOONFC",
   path: s.path,
 });
@@ -47,7 +47,7 @@ export default function LecturePage() {
         title="기업·대학 강의 출강"
         lead={`${site.name}(${site.nameEn})은 피트니스 기업·프랜차이즈와 대학 체육·스포츠 관련 학과를 대상으로 피트니스 경영과 FC 실무 강의를 출강합니다. 대표 ${site.founder.name}이 직접 강의하며, 요청 기관의 목적에 맞춰 주제와 구성을 새로 만듭니다.`}
       >
-        <div className="hero-actions">
+        <div className="hero-actions" style={{ marginTop: 20 }}>
           <Link href="/contact" className="btn btn-primary">
             출강 문의하기
           </Link>

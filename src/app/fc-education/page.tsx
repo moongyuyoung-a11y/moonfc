@@ -18,7 +18,7 @@ const crumbs = [
 ];
 
 export const metadata = buildMetadata({
-  title: "FC 교육 · FC 양성 과정과 세미나",
+  title: "FC 교육 · 피트니스 컨설턴트 양성 과정",
   description: "FC(피트니스 컨설턴트) 양성 과정, FC DEEP SIGHT·PRO FC 세미나, 관리자 집중 양성 과정. MOONFC FC 교육 안내",
   path: s.path,
 });
@@ -47,7 +47,7 @@ export default function FcEducationPage() {
         title="FC(피트니스 컨설턴트) 교육"
         lead={`${site.name}(${site.nameEn})의 FC 교육은 헬스장·피트니스센터에서 회원 상담과 등록을 담당하는 FC(Fitness Consultant)를 현장에서 바로 일할 수 있게 양성하는 과정입니다. 기본 양성 과정, 세미나(FC DEEP SIGHT, PRO FC), 관리자 집중 양성 과정으로 나뉘며 모두 실습 중심으로 진행합니다.`}
       >
-        <div className="hero-actions">
+        <div className="hero-actions" style={{ marginTop: 20 }}>
           <Link href="/contact" className="btn btn-primary">
             교육 문의하기
           </Link>

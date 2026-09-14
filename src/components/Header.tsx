@@ -6,8 +6,13 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand">
-          <span className="brand-en">{site.nameEn}</span>
-          <span className="brand-ko">{site.name}</span>
+          <span className="brand-mark" aria-hidden="true">
+            M
+          </span>
+          <span className="brand-text">
+            <span className="brand-en">{site.nameEn}</span>
+            <span className="brand-ko">{site.name}</span>
+          </span>
         </Link>
         <nav className="nav-desktop" aria-label="주요 메뉴">
           <ul>

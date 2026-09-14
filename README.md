@@ -3,7 +3,7 @@
 문프스컨설팅그룹(MOONFC) 공식 홈페이지. 피트니스센터 경영 컨설팅 · FC 교육 · 강의.
 
 - Next.js 16 (App Router) **정적 export** — 서버 없이 Vercel/어떤 정적 호스팅에도 배포 가능
-- 한국어(`lang="ko"`), 모바일 우선, 외부 폰트·외부 스크립트 없음
+- 한국어(`lang="ko"`), 모바일 우선, 외부 스크립트 없음. 제목용 글꼴 Pretendard Bold(OFL, 한글 2,350자 서브셋 약 180KB)만 셀프호스팅하고 본문은 시스템 글꼴을 써서 첫 화면이 폰트를 기다리지 않게 함
 - SEO/GEO: 페이지별 title·description·canonical·OG·Twitter, JSON-LD(@graph), sitemap.xml, robots.txt, rss.xml, llms.txt
 
 ## 실행
@@ -34,12 +34,16 @@ src/app/                 페이지 (App Router)
 src/lib/site.ts          브랜드명·대표·지역·SNS·검증 태그 등 전역 설정 (표기 통일의 기준)
 src/lib/faq.ts           FAQ 데이터 (질문/답변/카테고리)
 src/lib/profile.ts       대표 경력·강의 이력 데이터  ← 실제 이력으로 교체 필요
+src/lib/trust.ts         핵심 숫자·고객 후기·협력 기관 (비어 있으면 섹션 숨김)
 src/lib/schema.ts        JSON-LD 빌더
 src/lib/seo.ts           메타태그 빌더
 content/insights/*.md    블로그 글 (frontmatter + 마크다운)
 public/images/           WebP 이미지, OG 이미지
+public/fonts/            제목용 Pretendard Bold 서브셋 (라이선스 파일 포함)
 scripts/                 검증·라이트하우스·로컬 서버 스크립트
 docs/launch-checklist.md 배포 후 서치어드바이저/서치콘솔 등록 절차
+docs/editing-guide.md    무엇을 바꾸려면 어느 파일을 고치는지 정리한 수정 가이드
+docs/seo-plan.md         검색 상위 노출을 위한 운영 계획
 ```
 
 ## 배포 전 반드시 바꿀 것

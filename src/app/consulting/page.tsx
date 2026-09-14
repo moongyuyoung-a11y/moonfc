@@ -18,7 +18,7 @@ const crumbs = [
 ];
 
 export const metadata = buildMetadata({
-  title: "피트니스센터 경영 컨설팅",
+  title: "헬스장 경영 컨설팅 · 피트니스센터 매니지먼트",
   description: "헬스장 매출 구조 진단부터 전략 수립, 현장 실행까지. 문프스컨설팅그룹(MOONFC)의 피트니스센터 매니지먼트 컨설팅 과정과 비용 안내",
   path: s.path,
 });
@@ -44,10 +44,10 @@ export default function ConsultingPage() {
       </div>
       <PageHero
         eyebrow="Fitness Center Management"
-        title="피트니스센터 경영 컨설팅"
+        title="헬스장·피트니스센터 경영 컨설팅"
         lead={`${site.name}(${site.nameEn})의 경영 컨설팅은 헬스장·피트니스센터의 매출 구조를 진단하고, 개선 전략을 세운 뒤, 현장에서 실행되는 것까지 확인하는 서비스입니다. 회원 등록·재등록 흐름과 직원 운영 방식을 데이터로 들여다보고 센터가 스스로 굴러가는 구조를 만듭니다.`}
       >
-        <div className="hero-actions">
+        <div className="hero-actions" style={{ marginTop: 20 }}>
           <Link href="/contact" className="btn btn-primary">
             무료 사전 상담 신청
           </Link>

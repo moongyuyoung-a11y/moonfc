@@ -13,7 +13,7 @@ const crumbs = [
 ];
 
 export const metadata = buildMetadata({
-  title: "대표 문규영 소개",
+  title: "대표 문규영 · 피트니스 경영 컨설턴트",
   description: "문프스컨설팅그룹(MOONFC) 대표 문규영(컨설턴트 문프스)의 경력, 강의 이력, 활동. 헬스장 현장 경험을 바탕으로 한 피트니스 경영 컨설턴트",
   path: "/about",
 });
@@ -57,6 +57,7 @@ export default function AboutPage() {
               <h1>
                 대표 {site.founder.name} <small style={{ fontWeight: 500, fontSize: "0.6em", color: "var(--muted)" }}>({site.founder.alias})</small>
               </h1>
+              <p className="founder-quote">현장에서 확인되지 않은 전략은 제안하지 않습니다.</p>
               <p className="lead">{site.founder.description}</p>
               <p>
                 헬스장 현장에서 FC와 관리자로 일하며 매출이 어떻게 만들어지고 어디서 새는지를 직접 겪었습니다. 그 경험을 바탕으로 지금은 센터 대표에게는 경영 컨설팅을, FC와 관리자에게는 교육을, 기업과 대학에는 강의를 하고 있습니다. 유튜브 채널 <a href={site.social.youtube} target="_blank" rel="noopener noreferrer">FC문프스</a>와 인스타그램 <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">@moonfc_guide</a>에서 현장 이야기를 나눕니다.

@@ -40,8 +40,18 @@ export const site = {
     streetAddress: "",
     areaServed: "대한민국 전 지역",
   },
+  /** 사업자 정보 (푸터·JSON-LD). 비어 있으면 출력하지 않음 */
+  business: {
+    /** TODO: 사업자등록번호 (예: 000-00-00000) */
+    registrationNumber: "",
+    /** TODO: 통신판매업 신고번호가 있으면 입력 */
+    mailOrderNumber: "",
+    /** 설립 연도 (예: "2021") */
+    foundingYear: "",
+  },
   /** 연락 채널 */
   contact: {
+    /** TODO: 대표 이메일 */
     email: "",
     kakaoChannelUrl: process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "",
     formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "",

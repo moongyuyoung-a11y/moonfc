@@ -16,7 +16,7 @@ const crumbs = [
 ];
 
 export const metadata = buildMetadata({
-  title: "피트니스 경영 인사이트",
+  title: "피트니스경영 인사이트 · 헬스장 운영 노하우",
   description: "헬스장 매출 관리, FC 상담, 재등록, 직원 운영에 대해 현장 경험을 바탕으로 쓴 글. 문프스컨설팅그룹(MOONFC) 피트니스경영연구소",
   path: "/insights",
 });
